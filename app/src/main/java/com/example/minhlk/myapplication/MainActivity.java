@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Add search activity
-                Intent i = new Intent(v.getContext(),LoginActivity.class);
+                Intent i = new Intent(v.getContext(),BookActivity.class);
                 startActivity(i);
             }
         });
