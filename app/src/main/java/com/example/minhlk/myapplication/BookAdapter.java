@@ -1,10 +1,13 @@
 package com.example.minhlk.myapplication;
 
+import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -45,16 +48,20 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     // Complex books items may need more than one view per item, and
     // you provide access to all the views for a books item in a view holder
     public class ViewHolderRow extends RecyclerView.ViewHolder {
-        public TextView tBookName, tDesc;
-
+        public TextView tBookName, tDesc,tAuthor;
+        public ImageView Image;
+        public ImageButton bEdit;
         public ViewHolderRow(View v) {
             super(v);
             tBookName = v.findViewById(R.id.tBookName);
             tDesc = v.findViewById(R.id.tDesc);
+            Image = v.findViewById(R.id.Image);
+            tAuthor = v.findViewById(R.id.tAuthor);
+            bEdit = v.findViewById(R.id.bEdit);
         }
 
         public void bind(final Book book, final OnItemClickListener listener) {
-            itemView.setOnClickListener(new View.OnClickListener() {
+            bEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     listener.onItemClick(book);
@@ -108,8 +115,11 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             ViewHolderRow userViewHolder = (ViewHolderRow) holder;
 
-            userViewHolder.tBookName.setText(book.getBookName());
+            userViewHolder.tBookName.setText(book.getName());
             userViewHolder.tDesc.setText(book.getDescription());
+            userViewHolder.tAuthor.setText(book.getIdAuthor());
+            userViewHolder.Image.setImageURI(Uri.parse(book.getImage()));
+
             //userViewHolder.email.setText(contact.getPhone());
 
             // binding item click listner
@@ -141,4 +151,6 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void setLoaded() {
         isLoading = false;
     }
+
+
 }

@@ -1,24 +1,19 @@
 package com.example.minhlk.myapplication;
 
-public class Book {
-    int id;
-    String bookName,Description,Image;
+import java.io.Serializable;
 
-    public int getId() {
+public class Book implements Serializable {
+    String Name,Description,Image,idAuthor,id;
+
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getBookName() {
-        return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
 
     public String getDescription() {
         return Description;
@@ -36,4 +31,30 @@ public class Book {
         Image = image;
     }
 
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getIdAuthor() {
+        return idAuthor;
+    }
+
+    public void setIdAuthor(String idAuthor) {
+        this.idAuthor = idAuthor;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "Name='" + Name + '\'' +
+                ", Description='" + Description + '\'' +
+                ", Image='" + Image + '\'' +
+                ", idAuthor='" + idAuthor + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }
