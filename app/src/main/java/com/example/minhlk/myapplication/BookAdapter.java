@@ -117,7 +117,7 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             userViewHolder.tBookName.setText(book.getName());
             userViewHolder.tDesc.setText(book.getDescription());
-            userViewHolder.tAuthor.setText(book.getIdAuthor());
+            userViewHolder.tAuthor.setText(book.getAuthorName());
             userViewHolder.Image.setImageURI(Uri.parse(book.getImage()));
 
             //userViewHolder.email.setText(contact.getPhone());

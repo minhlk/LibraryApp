@@ -3,6 +3,14 @@ package com.example.minhlk.myapplication;
 public class Author {
     public String id,name;
 
+    public Author(){
+
+    }
+    public Author(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public String getId() {
         return id;
     }

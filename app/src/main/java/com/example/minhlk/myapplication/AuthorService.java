@@ -55,4 +55,10 @@ public class AuthorService {
 
 
     }
+    protected int FindById(String id,List<Author> authors){
+        for(int i = 0 ; i < authors.size(); i++)
+            if(authors.get(i).getId().equals(id))
+                return i;
+        return -1;
+    }
 }

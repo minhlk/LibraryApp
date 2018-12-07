@@ -13,12 +13,12 @@ public class Events {
             return message;
         }
     }
-    public static class BookMessage {
-        private Book message;
-        public BookMessage (Book message) {
+    public static class GenreMessage {
+        private List<Genre> message;
+        public GenreMessage (List<Genre> message) {
             this.message = message;
         }
-        public Book getMessage() {
+        public List<Genre> getMessage() {
             return message;
         }
     }

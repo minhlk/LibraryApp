@@ -50,6 +50,7 @@ public class BookActivity extends AppCompatActivity {
         svBook = findViewById(R.id.svBook);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
+
         mRecyclerView.setLayoutManager(mLayoutManager);
         Fresco.initialize(this);
         mAdapter = new BookAdapter(books,mRecyclerView);
@@ -64,7 +65,12 @@ public class BookActivity extends AppCompatActivity {
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
+            public boolean onQueryTextChange(String newText)
+            {
+                if(newText.isEmpty()){
+                    nameKeyword = "";
+                    Init();
+                }
                 return true;
             }
         });
@@ -91,6 +97,8 @@ public class BookActivity extends AppCompatActivity {
             }
         });
         mRecyclerView.setAdapter(mAdapter);
+
+
     }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -139,8 +147,15 @@ public class BookActivity extends AppCompatActivity {
                             temp.setId(response.getJSONObject(i).getString("id"));
                             temp.setName(response.getJSONObject(i).getString("name"));
                             temp.setDescription(response.getJSONObject(i).getString("description"));
-                            temp.setIdAuthor(response.getJSONObject(i).getJSONObject("idAuthorNavigation").getString("name"));
+                            temp.setAuthorName(response.getJSONObject(i).getJSONObject("idAuthorNavigation").getString("name"));
+                            temp.setIdAuthor(response.getJSONObject(i).getString("idAuthor"));
                             temp.setImage(response.getJSONObject(i).getString("image"));
+                            JSONArray bgResult = response.getJSONObject(i).getJSONArray("bookGenre");
+                            List<BookGenre> bookGenre = new ArrayList<>();
+                            for(int j = 0 ; j < bgResult.length(); j++){
+                                bookGenre.add(new BookGenre(bgResult.getJSONObject(j).getString("idGenre")));
+                            }
+                            temp.setBookGenre(bookGenre);
                             books.add(temp);
                         } catch (JSONException e) {
                             e.printStackTrace();
